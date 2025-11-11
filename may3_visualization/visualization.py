@@ -150,14 +150,34 @@ def kafka_consumer_loop(kafka_bootstrap_servers, kafka_topic):
                     data = message.value if isinstance(message.value, dict) else json.loads(message.value)
                     process_message(data)
             
-        except KafkaError as e:
-            logger.error(f"Lỗi Kafka: {e}")
-            st.session_state.connection_status = "❌ Lỗi kết nối"
-            st.session_state.consumer = None
-            time.sleep(5)
         except Exception as e:
-            logger.error(f"Lỗi không mong đợi: {e}")
-            time.sleep(1)
+            error_msg = str(e)
+            # Bỏ qua lỗi wakeup socket khi đang đóng consumer
+            if "wakeup" in error_msg.lower() or "wakeup" in str(type(e)).lower():
+                logger.debug(f"Consumer đang đóng: {e}")
+                break
+            elif isinstance(e, KafkaError):
+                logger.error(f"Lỗi Kafka: {e}")
+                st.session_state.connection_status = "❌ Lỗi kết nối"
+                try:
+                    if st.session_state.consumer:
+                        st.session_state.consumer.close()
+                except:
+                    pass
+                st.session_state.consumer = None
+                time.sleep(5)
+            else:
+                logger.error(f"Lỗi không mong đợi: {e}")
+                time.sleep(1)
+    
+    # Cleanup khi thoát loop
+    try:
+        if st.session_state.consumer:
+            st.session_state.consumer.close()
+    except Exception as e:
+        logger.debug(f"Lỗi khi đóng consumer: {e}")
+    finally:
+        st.session_state.consumer = None
 
 def create_parking_map():
     """Tạo bản đồ bãi đỗ xe"""
@@ -240,9 +260,24 @@ def main():
         )
         
         if st.button("🔄 Kết nối/Khởi động lại"):
+            # Dừng consumer cũ trước
+            st.session_state.running = False
             if st.session_state.consumer:
-                st.session_state.consumer.close()
+                try:
+                    st.session_state.consumer.wakeup()
+                except:
+                    pass
+                try:
+                    st.session_state.consumer.close()
+                except:
+                    pass
             st.session_state.consumer = None
+            # Đợi thread cũ kết thúc
+            if st.session_state.consumer_thread and st.session_state.consumer_thread.is_alive():
+                st.session_state.consumer_thread.join(timeout=2)
+            st.session_state.consumer_thread = None
+            
+            # Khởi động lại
             st.session_state.running = True
             st.session_state.consumer = connect_kafka(kafka_bootstrap, kafka_topic)
             if st.session_state.consumer:
@@ -260,8 +295,17 @@ def main():
         if st.button("⏹️ Dừng"):
             st.session_state.running = False
             if st.session_state.consumer:
-                st.session_state.consumer.close()
+                try:
+                    st.session_state.consumer.wakeup()
+                except:
+                    pass
+                try:
+                    st.session_state.consumer.close()
+                except:
+                    pass
                 st.session_state.consumer = None
+            if st.session_state.consumer_thread and st.session_state.consumer_thread.is_alive():
+                st.session_state.consumer_thread.join(timeout=2)
             st.session_state.consumer_thread = None
             st.rerun()
         
@@ -280,6 +324,18 @@ def main():
                 )
                 consumer_thread.start()
                 st.session_state.consumer_thread = consumer_thread
+    
+    # Cleanup khi app đóng
+    if not st.session_state.running and st.session_state.consumer:
+        try:
+            st.session_state.consumer.wakeup()
+        except:
+            pass
+        try:
+            st.session_state.consumer.close()
+        except:
+            pass
+        st.session_state.consumer = None
     
     # Cập nhật thống kê
     update_statistics()
