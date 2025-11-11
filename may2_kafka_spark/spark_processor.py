@@ -342,14 +342,20 @@ class ParkingStateProcessor(StatefulProcessor):
         """Cleanup khi đóng processor"""
         pass
 
-def create_spark_session():
+def create_spark_session(checkpoint_location=None):
     """Tạo SparkSession với cấu hình phù hợp"""
-    spark = SparkSession.builder \
+    builder = SparkSession.builder \
         .appName("ParkingStatefulProcessor") \
         .config("spark.sql.streaming.stateStore.providerClass", "org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider") \
-        .config("spark.sql.streaming.checkpointLocation", "/tmp/parking-checkpoint") \
-        .config("spark.sql.streaming.stateStore.maintenanceInterval", "60s") \
-        .getOrCreate()
+        .config("spark.sql.streaming.stateStore.maintenanceInterval", "60s")
+    
+    # Cấu hình checkpoint location
+    if checkpoint_location:
+        builder = builder.config("spark.sql.streaming.checkpointLocation", checkpoint_location)
+    else:
+        builder = builder.config("spark.sql.streaming.checkpointLocation", "/tmp/parking-checkpoint")
+    
+    spark = builder.getOrCreate()
     
     spark.sparkContext.setLogLevel("WARN")
     return spark
@@ -370,8 +376,8 @@ def main():
     
     args = parser.parse_args()
     
-    # Tạo SparkSession
-    spark = create_spark_session()
+    # Tạo SparkSession với checkpoint location
+    spark = create_spark_session(checkpoint_location=args.checkpoint)
     
     # Đọc từ Kafka
     df = spark \
