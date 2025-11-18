@@ -84,7 +84,8 @@ class ParkingEvent:
         """Chuyển sang trạng thái tiếp theo theo logic"""
         if self.status == ParkingStatus.ENTERING:
             self.status = ParkingStatus.PARKED
-            self.parked_duration = random.randint(20, 200)
+            # Giảm parked_duration để xe nhanh chuyển trạng thái (3-10 events thay vì 20-200)
+            self.parked_duration = random.randint(3, 10)
             self.parked_count = 0
             
         elif self.status == ParkingStatus.PARKED:
