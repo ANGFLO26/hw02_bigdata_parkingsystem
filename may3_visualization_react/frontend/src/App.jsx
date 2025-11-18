@@ -44,10 +44,16 @@ function App() {
   useEffect(() => {
     if (!socketUrl) return // Chờ load config xong
     
-    // Kết nối WebSocket
+    // Kết nối WebSocket với auto-reconnect
     console.log(`🔌 Đang kết nối đến: ${socketUrl}`)
     const newSocket = io(socketUrl, {
-      transports: ['websocket', 'polling']
+      transports: ['websocket', 'polling'],
+      reconnection: true, // Bật auto-reconnect
+      reconnectionAttempts: Infinity, // Thử kết nối lại vô hạn
+      reconnectionDelay: 1000, // Đợi 1 giây trước khi reconnect
+      reconnectionDelayMax: 5000, // Tối đa 5 giây
+      timeout: 20000, // Timeout 20 giây
+      forceNew: false // Tái sử dụng connection nếu có thể
     })
 
     newSocket.on('connect', () => {
@@ -55,8 +61,38 @@ function App() {
       setConnected(true)
     })
 
-    newSocket.on('disconnect', () => {
-      console.log('❌ Đã ngắt kết nối')
+    newSocket.on('disconnect', (reason) => {
+      console.log('❌ Đã ngắt kết nối:', reason)
+      setConnected(false)
+      
+      // Nếu disconnect do lỗi, sẽ tự động reconnect
+      if (reason === 'io server disconnect') {
+        // Server đóng connection, cần reconnect thủ công
+        newSocket.connect()
+      }
+    })
+
+    newSocket.on('connect_error', (error) => {
+      console.error('❌ Lỗi kết nối WebSocket:', error.message)
+      setConnected(false)
+      // Socket.io sẽ tự động thử reconnect
+    })
+
+    newSocket.on('reconnect', (attemptNumber) => {
+      console.log(`🔄 Đã kết nối lại (lần thử ${attemptNumber})`)
+      setConnected(true)
+    })
+
+    newSocket.on('reconnect_attempt', (attemptNumber) => {
+      console.log(`🔄 Đang thử kết nối lại... (lần ${attemptNumber})`)
+    })
+
+    newSocket.on('reconnect_error', (error) => {
+      console.error('❌ Lỗi khi reconnect:', error.message)
+    })
+
+    newSocket.on('reconnect_failed', () => {
+      console.error('❌ Không thể kết nối lại sau nhiều lần thử')
       setConnected(false)
     })
 
@@ -71,6 +107,10 @@ function App() {
     })
 
     newSocket.on('parking_update', (data) => {
+      console.log('📊 Nhận parking update:', {
+        occupied: Object.keys(data.parking_lot_map || {}).length,
+        revenue: data.statistics?.total_revenue
+      })
       // Cập nhật state với dữ liệu mới
       setParkingLotMap(data.parking_lot_map || {})
       setStatistics(data.statistics || statistics)
@@ -85,6 +125,7 @@ function App() {
 
     // Cleanup
     return () => {
+      console.log('🔌 Đóng WebSocket connection')
       newSocket.close()
     }
   }, [socketUrl]) // Reconnect khi socketUrl thay đổi
