@@ -343,7 +343,7 @@ def kafka_consumer_loop():
                     bootstrap_servers=[KAFKA_BOOTSTRAP_SERVERS],
                     value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                     consumer_timeout_ms=1000,
-                    auto_offset_reset='latest',
+                    auto_offset_reset='earliest',  # Đọc từ đầu để không bỏ sót messages
                     enable_auto_commit=True,
                     group_id='parking-visualization-websocket'
                 )
