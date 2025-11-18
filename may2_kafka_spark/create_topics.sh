@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script tạo Kafka topics cần thiết
 
-KAFKA_HOME=${KAFKA_HOME:-/opt/kafka}
+KAFKA_HOME=${KAFKA_HOME:-/home/phanvantai/Downloads/kafka_2.13-3.7.0}
 BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER:-localhost:9092}
 
 echo "Tạo Kafka topics..."

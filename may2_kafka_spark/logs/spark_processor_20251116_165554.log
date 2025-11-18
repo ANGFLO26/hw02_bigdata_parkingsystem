@@ -1,0 +1,63 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/11/16 16:55:55 WARN Utils: Your hostname, phanvantai-Vivobook, resolves to a loopback address: 127.0.1.1; using 192.168.1.15 instead (on interface wlo1)
+25/11/16 16:55:55 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/11/16 16:55:56 INFO SparkContext: Running Spark version 4.0.1
+25/11/16 16:55:56 INFO SparkContext: OS info Linux, 6.8.0-87-generic, amd64
+25/11/16 16:55:56 INFO SparkContext: Java version 17.0.16
+25/11/16 16:55:56 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/11/16 16:55:56 INFO ResourceUtils: ==============================================================
+25/11/16 16:55:56 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/11/16 16:55:56 INFO ResourceUtils: ==============================================================
+25/11/16 16:55:56 INFO SparkContext: Submitted application: ParkingStatefulProcessor
+25/11/16 16:55:56 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/11/16 16:55:56 INFO ResourceProfile: Limiting resource is cpu
+25/11/16 16:55:56 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/11/16 16:55:56 INFO SecurityManager: Changing view acls to: phanvantai
+25/11/16 16:55:56 INFO SecurityManager: Changing modify acls to: phanvantai
+25/11/16 16:55:56 INFO SecurityManager: Changing view acls groups to: phanvantai
+25/11/16 16:55:56 INFO SecurityManager: Changing modify acls groups to: phanvantai
+25/11/16 16:55:56 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: phanvantai groups with view permissions: EMPTY; users with modify permissions: phanvantai; groups with modify permissions: EMPTY; RPC SSL disabled
+25/11/16 16:55:56 INFO Utils: Successfully started service 'sparkDriver' on port 44889.
+25/11/16 16:55:56 INFO SparkEnv: Registering MapOutputTracker
+25/11/16 16:55:56 INFO SparkEnv: Registering BlockManagerMaster
+25/11/16 16:55:56 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/11/16 16:55:56 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/11/16 16:55:56 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/11/16 16:55:57 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-aedbac94-85d5-4f21-93d9-0e73262512bf
+25/11/16 16:55:57 INFO SparkEnv: Registering OutputCommitCoordinator
+25/11/16 16:55:57 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/11/16 16:55:57 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/11/16 16:55:57 INFO SecurityManager: Changing view acls to: phanvantai
+25/11/16 16:55:57 INFO SecurityManager: Changing modify acls to: phanvantai
+25/11/16 16:55:57 INFO SecurityManager: Changing view acls groups to: phanvantai
+25/11/16 16:55:57 INFO SecurityManager: Changing modify acls groups to: phanvantai
+25/11/16 16:55:57 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: phanvantai groups with view permissions: EMPTY; users with modify permissions: phanvantai; groups with modify permissions: EMPTY; RPC SSL disabled
+25/11/16 16:55:57 INFO Executor: Starting executor ID driver on host 192.168.1.15
+25/11/16 16:55:57 INFO Executor: OS info Linux, 6.8.0-87-generic, amd64
+25/11/16 16:55:57 INFO Executor: Java version 17.0.16
+25/11/16 16:55:57 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/11/16 16:55:57 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@b8ad435 for default.
+25/11/16 16:55:57 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39547.
+25/11/16 16:55:57 INFO NettyBlockTransferService: Server created on 192.168.1.15:39547
+25/11/16 16:55:57 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/11/16 16:55:57 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 192.168.1.15, 39547, None)
+25/11/16 16:55:57 INFO BlockManagerMasterEndpoint: Registering block manager 192.168.1.15:39547 with 434.4 MiB RAM, BlockManagerId(driver, 192.168.1.15, 39547, None)
+25/11/16 16:55:57 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 192.168.1.15, 39547, None)
+25/11/16 16:55:57 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 192.168.1.15, 39547, None)
+25/11/16 16:56:00 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+Spark streaming đã bắt đầu...
+Đọc từ topic: parking-raw-events
+Ghi vào topic: parking-processed-results
+Starting Streaming TransformWithStateInPandas Python worker.
+
+Streaming TransformWithStateInPandas Python worker finish init stage of Python runner. Received UDF from JVM: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x766169b2aef0>, received return type of UDF: StructType([StructField('timestamp', TimestampType(), True), StructField('timestamp_unix', LongType(), True), StructField('license_plate', StringType(), True), StructField('location', StringType(), True), StructField('status', StringType(), True), StructField('action', StringType(), True), StructField('parked_duration_minutes', DoubleType(), True), StructField('parked_blocks', IntegerType(), True), StructField('total_cost', LongType(), True), StructField('event_type', StringType(), True)]).
+
+Streaming TransformWithStateInPandas Python worker received parameters for UDF. State server port: 42023, key schema: StructType([StructField('license_plate', StringType(), True)]).
+
+Streaming TransformWithStateInPandas Python worker Starting execution of UDF: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x766169b2aef0>.
+
+Streaming TransformWithStateInPandas Python worker Completed execution of UDF: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x766169b2aef0>.
+
+25/11/16 16:56:03 WARN TransformWithStateInPandasStateServer: No more data to read from the socket

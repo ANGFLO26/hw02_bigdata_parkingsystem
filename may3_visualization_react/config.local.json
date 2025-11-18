@@ -1,0 +1,18 @@
+{
+  "mode": "local",
+  "description": "Cấu hình cho chạy trên 1 máy (localhost)",
+  "backend": {
+    "kafka": {
+      "bootstrap_servers": "localhost:9092",
+      "topic": "parking-processed-results"
+    },
+    "websocket": {
+      "host": "0.0.0.0",
+      "port": 5000
+    }
+  },
+  "frontend": {
+    "websocket_url": "http://localhost:5000"
+  }
+}
+

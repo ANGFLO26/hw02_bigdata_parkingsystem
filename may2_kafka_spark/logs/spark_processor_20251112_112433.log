@@ -1,0 +1,511 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/11/12 11:24:34 WARN Utils: Your hostname, phanvantai-Vivobook, resolves to a loopback address: 127.0.1.1; using 10.38.11.118 instead (on interface wlo1)
+25/11/12 11:24:34 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/11/12 11:24:35 INFO SparkContext: Running Spark version 4.0.1
+25/11/12 11:24:35 INFO SparkContext: OS info Linux, 6.8.0-87-generic, amd64
+25/11/12 11:24:35 INFO SparkContext: Java version 17.0.16
+25/11/12 11:24:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/11/12 11:24:36 INFO ResourceUtils: ==============================================================
+25/11/12 11:24:36 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/11/12 11:24:36 INFO ResourceUtils: ==============================================================
+25/11/12 11:24:36 INFO SparkContext: Submitted application: ParkingStatefulProcessor
+25/11/12 11:24:36 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/11/12 11:24:36 INFO ResourceProfile: Limiting resource is cpu
+25/11/12 11:24:36 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/11/12 11:24:36 INFO SecurityManager: Changing view acls to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing modify acls to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing view acls groups to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing modify acls groups to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: phanvantai groups with view permissions: EMPTY; users with modify permissions: phanvantai; groups with modify permissions: EMPTY; RPC SSL disabled
+25/11/12 11:24:36 INFO Utils: Successfully started service 'sparkDriver' on port 43843.
+25/11/12 11:24:36 INFO SparkEnv: Registering MapOutputTracker
+25/11/12 11:24:36 INFO SparkEnv: Registering BlockManagerMaster
+25/11/12 11:24:36 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/11/12 11:24:36 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/11/12 11:24:36 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/11/12 11:24:36 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-5e31c772-740f-4b90-bf0a-11990a32f96a
+25/11/12 11:24:36 INFO SparkEnv: Registering OutputCommitCoordinator
+25/11/12 11:24:36 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/11/12 11:24:36 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/11/12 11:24:36 INFO SecurityManager: Changing view acls to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing modify acls to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing view acls groups to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: Changing modify acls groups to: phanvantai
+25/11/12 11:24:36 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: phanvantai groups with view permissions: EMPTY; users with modify permissions: phanvantai; groups with modify permissions: EMPTY; RPC SSL disabled
+25/11/12 11:24:36 INFO Executor: Starting executor ID driver on host 10.38.11.118
+25/11/12 11:24:36 INFO Executor: OS info Linux, 6.8.0-87-generic, amd64
+25/11/12 11:24:36 INFO Executor: Java version 17.0.16
+25/11/12 11:24:36 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/11/12 11:24:36 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@37247768 for default.
+25/11/12 11:24:36 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42167.
+25/11/12 11:24:36 INFO NettyBlockTransferService: Server created on 10.38.11.118:42167
+25/11/12 11:24:36 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/11/12 11:24:36 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.38.11.118, 42167, None)
+25/11/12 11:24:36 INFO BlockManagerMasterEndpoint: Registering block manager 10.38.11.118:42167 with 434.4 MiB RAM, BlockManagerId(driver, 10.38.11.118, 42167, None)
+25/11/12 11:24:36 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.38.11.118, 42167, None)
+25/11/12 11:24:36 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.38.11.118, 42167, None)
+25/11/12 11:24:39 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+Spark streaming đã bắt đầu...
+Đọc từ topic: parking-raw-events
+Ghi vào topic: parking-processed-results
+Starting Streaming TransformWithStateInPandas Python worker.
+
+Streaming TransformWithStateInPandas Python worker finish init stage of Python runner. Received UDF from JVM: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x7e9fb7f32ef0>, received return type of UDF: StructType([StructField('timestamp', TimestampType(), True), StructField('timestamp_unix', LongType(), True), StructField('license_plate', StringType(), True), StructField('location', StringType(), True), StructField('status', StringType(), True), StructField('action', StringType(), True), StructField('parked_duration_minutes', DoubleType(), True), StructField('parked_blocks', IntegerType(), True), StructField('total_cost', LongType(), True), StructField('event_type', StringType(), True)]).
+
+Streaming TransformWithStateInPandas Python worker received parameters for UDF. State server port: 36973, key schema: StructType([StructField('license_plate', StringType(), True)]).
+
+Streaming TransformWithStateInPandas Python worker Starting execution of UDF: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x7e9fb7f32ef0>.
+
+Streaming TransformWithStateInPandas Python worker Completed execution of UDF: <function PandasGroupedOpsMixin.transformWithStateInPandas.<locals>.transformWithStateUDF at 0x7e9fb7f32ef0>.
+
+25/11/12 11:24:41 WARN TransformWithStateInPandasStateServer: No more data to read from the socket
+25/11/12 12:01:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:28 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:28 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:28 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:29 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:29 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:30 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:30 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:31 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:31 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:32 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:32 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:33 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:33 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:34 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:34 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:35 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:36 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:37 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:37 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:38 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:39 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:39 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:40 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:40 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:41 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:41 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:42 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:42 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:43 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:43 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:44 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:44 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:44 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:45 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:45 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:46 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:46 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:47 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:47 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:48 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:48 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:49 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:49 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:50 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:50 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:51 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:51 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:52 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:52 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:53 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:53 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:54 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:54 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:55 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:55 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:56 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:56 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:57 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:57 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:58 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:01:59 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:00 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:01 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:02 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:03 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:04 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:05 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:06 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:07 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:08 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:09 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:09 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:10 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:11 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:12 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:13 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:14 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:15 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:16 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:17 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:18 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:19 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:20 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:21 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:22 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:23 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:24 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:25 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:26 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:28 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:29 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:30 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:31 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:32 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:33 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:34 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:37 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:39 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:40 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:41 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:42 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:43 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:44 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:45 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:46 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:46 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:47 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:48 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:49 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:50 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:51 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:52 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:53 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:54 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:55 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:56 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:57 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:58 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:02:59 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:00 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:01 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:01 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:02 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:03 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:04 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:05 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:06 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:03:07 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:35 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:35 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:36 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:36 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:37 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:37 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:38 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:39 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:39 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:40 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:40 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:41 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:41 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:42 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:42 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:43 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:43 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:44 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:44 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:45 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:45 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:46 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:46 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:47 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:47 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:48 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:48 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:49 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:49 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:50 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:50 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:51 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:51 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:52 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:52 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:52 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:53 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:53 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:54 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:54 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:55 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:55 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:56 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:56 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:57 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:57 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:58 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:58 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:59 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:50:59 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:00 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:00 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:01 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:01 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:02 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:02 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:02 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:03 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:03 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:04 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:04 WARN NetworkClient: [AdminClient clientId=adminclient-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:05 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:06 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:07 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:08 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:09 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:09 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:10 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:11 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:12 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:13 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:14 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:15 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:16 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:17 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:18 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:19 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:20 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:21 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:22 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:23 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:24 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:25 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:26 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:26 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:28 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:29 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:30 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:31 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:32 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:33 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:34 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:37 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:39 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:40 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:41 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:42 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:43 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:44 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:45 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:46 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:47 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:48 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:49 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:50 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:51 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:52 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:53 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:54 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:55 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:56 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:57 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:58 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:59 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:51:59 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:00 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:01 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:02 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:03 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:04 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:05 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:06 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:07 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:08 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:09 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:10 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:10 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:11 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:12 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:13 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:14 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:15 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:16 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:17 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:18 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:19 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:20 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:21 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:22 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:23 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:24 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:25 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:26 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:26 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:27 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:28 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:29 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:30 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:31 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:32 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:33 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:34 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:35 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:36 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:36 ERROR Utils: Aborting task
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 ERROR Utils: Aborting task
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 ERROR Utils: Aborting task
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborting commit for partition 156 (task 27777, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborting commit for partition 166 (task 27787, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborting commit for partition 107 (task 27728, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborted commit for partition 107 (task 27728, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborted commit for partition 156 (task 27777, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR DataWritingSparkTask: Aborted commit for partition 166 (task 27787, attempt 0, stage 275.0)
+25/11/12 12:52:36 ERROR Executor: Exception in task 156.0 in stage 275.0 (TID 27777)
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 ERROR Executor: Exception in task 166.0 in stage 275.0 (TID 27787)
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 ERROR Executor: Exception in task 107.0 in stage 275.0 (TID 27728)
+org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+25/11/12 12:52:36 WARN TaskSetManager: Lost task 156.0 in stage 275.0 (TID 27777) (10.38.11.118 executor driver): org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+
+25/11/12 12:52:36 ERROR TaskSetManager: Task 156 in stage 275.0 failed 1 times; aborting job
+25/11/12 12:52:36 ERROR WriteToDataSourceV2Exec: Data source write support MicroBatchWrite[epoch: 137, writer: org.apache.spark.sql.kafka010.KafkaStreamingWrite@5bd359f3] is aborting.
+25/11/12 12:52:36 ERROR WriteToDataSourceV2Exec: Data source write support MicroBatchWrite[epoch: 137, writer: org.apache.spark.sql.kafka010.KafkaStreamingWrite@5bd359f3] aborted.
+25/11/12 12:52:36 ERROR MicroBatchExecution: Query [id = 1a12bb85-548d-4d81-a017-106b741ef466, runId = 8628dcc7-cf62-4f33-a0fa-0461c722a516] terminated with error
+org.apache.spark.SparkException: Job aborted due to stage failure: Task 156 in stage 275.0 failed 1 times, most recent failure: Lost task 156.0 in stage 275.0 (TID 27777) (10.38.11.118 executor driver): org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$3(DAGScheduler.scala:2935)
+	at scala.Option.getOrElse(Option.scala:201)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2935)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2927)
+	at scala.collection.immutable.List.foreach(List.scala:334)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2927)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1295)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1295)
+	at scala.Option.foreach(Option.scala:437)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1295)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3207)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3141)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3130)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:50)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:1009)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2484)
+	at org.apache.spark.sql.execution.datasources.v2.V2TableWriteExec.writeWithV2(WriteToDataSourceV2Exec.scala:424)
+	at org.apache.spark.sql.execution.datasources.v2.V2TableWriteExec.writeWithV2$(WriteToDataSourceV2Exec.scala:397)
+	at org.apache.spark.sql.execution.datasources.v2.WriteToDataSourceV2Exec.writeWithV2(WriteToDataSourceV2Exec.scala:329)
+	at org.apache.spark.sql.execution.datasources.v2.WriteToDataSourceV2Exec.run(WriteToDataSourceV2Exec.scala:340)
+	at org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result$lzycompute(V2CommandExec.scala:43)
+	at org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result(V2CommandExec.scala:43)
+	at org.apache.spark.sql.execution.datasources.v2.V2CommandExec.executeCollect(V2CommandExec.scala:49)
+	at org.apache.spark.sql.classic.Dataset.collectFromPlan(Dataset.scala:2244)
+	at org.apache.spark.sql.classic.Dataset.$anonfun$collect$1(Dataset.scala:1482)
+	at org.apache.spark.sql.classic.Dataset.$anonfun$withAction$2(Dataset.scala:2234)
+	at org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:654)
+	at org.apache.spark.sql.classic.Dataset.$anonfun$withAction$1(Dataset.scala:2232)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$8(SQLExecution.scala:163)
+	at org.apache.spark.sql.execution.SQLExecution$.withSessionTagsApplied(SQLExecution.scala:272)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$7(SQLExecution.scala:125)
+	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+	at org.apache.spark.sql.artifact.ArtifactManager.$anonfun$withResources$1(ArtifactManager.scala:112)
+	at org.apache.spark.sql.artifact.ArtifactManager.withClassLoaderIfNeeded(ArtifactManager.scala:106)
+	at org.apache.spark.sql.artifact.ArtifactManager.withResources(ArtifactManager.scala:111)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$6(SQLExecution.scala:125)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:295)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$1(SQLExecution.scala:124)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId0(SQLExecution.scala:78)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:237)
+	at org.apache.spark.sql.classic.Dataset.withAction(Dataset.scala:2232)
+	at org.apache.spark.sql.classic.Dataset.collect(Dataset.scala:1482)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$17(MicroBatchExecution.scala:888)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$8(SQLExecution.scala:163)
+	at org.apache.spark.sql.execution.SQLExecution$.withSessionTagsApplied(SQLExecution.scala:272)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$7(SQLExecution.scala:125)
+	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+	at org.apache.spark.sql.artifact.ArtifactManager.$anonfun$withResources$1(ArtifactManager.scala:112)
+	at org.apache.spark.sql.artifact.ArtifactManager.withClassLoaderIfNeeded(ArtifactManager.scala:106)
+	at org.apache.spark.sql.artifact.ArtifactManager.withResources(ArtifactManager.scala:111)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$6(SQLExecution.scala:125)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:295)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$1(SQLExecution.scala:124)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId0(SQLExecution.scala:78)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:237)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$16(MicroBatchExecution.scala:876)
+	at org.apache.spark.sql.execution.streaming.ProgressContext.reportTimeTaken(ProgressReporter.scala:186)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runBatch(MicroBatchExecution.scala:876)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$executeOneBatch$2(MicroBatchExecution.scala:394)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at org.apache.spark.sql.execution.streaming.ProgressContext.reportTimeTaken(ProgressReporter.scala:186)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.executeOneBatch(MicroBatchExecution.scala:364)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:344)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1$adapted(MicroBatchExecution.scala:344)
+	at org.apache.spark.sql.execution.streaming.TriggerExecutor.runOneBatch(TriggerExecutor.scala:39)
+	at org.apache.spark.sql.execution.streaming.TriggerExecutor.runOneBatch$(TriggerExecutor.scala:37)
+	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.runOneBatch(TriggerExecutor.scala:70)
+	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:82)
+	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:344)
+	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:337)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)
+	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:311)
+	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:226)
+Caused by: org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+Traceback (most recent call last):
+  File "/home/phanvantai/Documents/four_years/bigdata/hw02/may2_kafka_spark/spark_processor.py", line 600, in <module>
+    main()
+  File "/home/phanvantai/Documents/four_years/bigdata/hw02/may2_kafka_spark/spark_processor.py", line 597, in main
+    query.awaitTermination()
+  File "/home/phanvantai/Downloads/spark-4.0.1/python/lib/pyspark.zip/pyspark/sql/streaming/query.py", line 225, in awaitTermination
+    return self._jsq.awaitTermination()
+  File "/home/phanvantai/Downloads/spark-4.0.1/python/lib/py4j-0.10.9.9-src.zip/py4j/java_gateway.py", line 1362, in __call__
+    return_value = get_return_value(
+  File "/home/phanvantai/Downloads/spark-4.0.1/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 288, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.StreamingQueryException: [STREAM_FAILED] Query [id = 1a12bb85-548d-4d81-a017-106b741ef466, runId = 8628dcc7-cf62-4f33-a0fa-0461c722a516] terminated with exception: Job aborted due to stage failure: Task 156 in stage 275.0 failed 1 times, most recent failure: Lost task 156.0 in stage 275.0 (TID 27777) (10.38.11.118 executor driver): org.apache.kafka.common.errors.TimeoutException: Expiring 3 record(s) for parking-processed-results-0:120001 ms has passed since batch creation
+
+Driver stacktrace: SQLSTATE: XXKST
+=== Streaming Query ===
+Identifier: [id = 1a12bb85-548d-4d81-a017-106b741ef466, runId = 8628dcc7-cf62-4f33-a0fa-0461c722a516]
+Current Committed Offsets: {KafkaV2[Subscribe[parking-raw-events]]: {"parking-raw-events":{"0":297,"1":281,"2":294}}}
+Current Available Offsets: {KafkaV2[Subscribe[parking-raw-events]]: {"parking-raw-events":{"0":297,"1":281,"2":294}}}
+
+Current State: ACTIVE
+Thread State: RUNNABLE
+
+Logical Plan:
+~WriteToMicroBatchDataSource org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaTable@7a825ed9, 1a12bb85-548d-4d81-a017-106b741ef466, [kafka.bootstrap.servers=localhost:9092, topic=parking-processed-results, checkpointLocation=/tmp/parking-checkpoint], Update
++- ~Project [to_json(struct(timestamp, timestamp#22, timestamp_unix, timestamp_unix#23L, license_plate, license_plate#24, location, location#25, status, status#26, action, action#27, parked_duration_minutes, parked_duration_minutes#28, parked_blocks, parked_blocks#29, total_cost, total_cost#30L, event_type, event_type#31), Some(Asia/Ho_Chi_Minh)) AS value#32]
+   +- ~TransformWithStateInPandas transformWithStateUDF(timestamp#15, timestamp_unix#16L, license_plate#17, location#18, status_code#19, event_time#20-T600000ms)#21, 1, [timestamp#22, timestamp_unix#23L, license_plate#24, location#25, status#26, action#27, parked_duration_minutes#28, parked_blocks#29, total_cost#30L, event_type#31], Update, ProcessingTime, false, 0
+      :- ~Project [license_plate#17, timestamp#15, timestamp_unix#16L, license_plate#17, location#18, status_code#19, event_time#20-T600000ms]
+      :  +- ~EventTimeWatermark 08e461a7-513c-470f-a10f-35464dabcffe, event_time#20: timestamp, 10 minutes
+      :     +- ~Project [timestamp#15, timestamp_unix#16L, license_plate#17, location#18, status_code#19, cast(timestamp_unix#16L as timestamp) AS event_time#20]
+      :        +- ~Filter ((isnotnull(license_plate#17) AND isnotnull(location#18)) AND isnotnull(status_code#19))
+      :           +- ~Project [data#14.timestamp AS timestamp#15, data#14.timestamp_unix AS timestamp_unix#16L, data#14.license_plate AS license_plate#17, data#14.location AS location#18, data#14.status_code AS status_code#19]
+      :              +- ~Project [from_json(StructField(timestamp,StringType,true), StructField(timestamp_unix,LongType,true), StructField(license_plate,StringType,true), StructField(location,StringType,true), StructField(status_code,StringType,true), cast(value#8 as string), Some(Asia/Ho_Chi_Minh), false) AS data#14]
+      :                 +- ~StreamingDataSourceV2ScanRelation[key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13] KafkaTable
+      +- LocalRelation <empty>
+
+25/11/12 12:52:37 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.
+25/11/12 12:52:38 WARN NetworkClient: [Producer clientId=producer-1] Connection to node 0 (/10.38.11.118:9092) could not be established. Node may not be available.

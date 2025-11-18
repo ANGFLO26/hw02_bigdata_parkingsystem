@@ -31,8 +31,9 @@ if [ ! -f "spark_processor.py" ]; then
 fi
 
 # Chạy Spark submit
+# Lưu ý: Spark 4.0.1 đã có sẵn Kafka connector trong thư mục jars
+# Không cần --packages vì JAR đã được include sẵn
 spark-submit \
-  --packages org.apache.spark:spark-sql-kafka-0-10_2.12:4.0.1 \
   --master $SPARK_MASTER \
   --executor-memory 2g \
   --executor-cores 2 \

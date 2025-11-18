@@ -1,0 +1,113 @@
+.parking-map {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.floor-section {
+  margin-bottom: 20px;
+}
+
+.floor-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.parking-spots-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 12px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.parking-spot {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+}
+
+.parking-spot:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.parking-spot.available {
+  background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+  color: white;
+  border-color: #37b24d;
+}
+
+.parking-spot.occupied {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  border-color: #fa5252;
+}
+
+.spot-location {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.spot-license {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-all;
+  line-height: 1.2;
+}
+
+.spot-duration {
+  font-size: 10px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.spot-cost {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 6px;
+  border-radius: 5px;
+  margin-top: 4px;
+}
+
+.spot-empty {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-top: auto;
+}
+
+@media (max-width: 1600px) {
+  .parking-spots-row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .parking-spots-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
